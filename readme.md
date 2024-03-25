@@ -36,6 +36,7 @@ As bibliotecas de componentes baseadas em Designer Atomic facilitam o compartilh
 
 Para mais informações sobre o Designer Atomic, consulte o livro "Atomic Design" de Brad Frost e explore as práticas recomendadas e exemplos disponíveis online.
 
+<img src="img/ad.png">
 ```
 js/
 |-- components/
