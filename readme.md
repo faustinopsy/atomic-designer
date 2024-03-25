@@ -35,3 +35,43 @@ Com componentes bem definidos e isolados, é mais fácil testar e fazer atualiza
 As bibliotecas de componentes baseadas em Designer Atomic facilitam o compartilhamento e a colaboração entre equipes de design e desenvolvimento, promovendo a consistência e a eficiência em todo o projeto.
 
 Para mais informações sobre o Designer Atomic, consulte o livro "Atomic Design" de Brad Frost e explore as práticas recomendadas e exemplos disponíveis online.
+
+```
+js/
+|-- components/
+|   |-- atoms/         # Diretório para componentes atomicos
+|   |   |-- button.js
+|   |   |-- input.js
+|   |   |-- form.js
+|   |   |-- label.js
+|   |   |-- ...
+|   |
+|   |-- molecules/      # Diretório para componentes moleculares
+|   |   |-- botoesFooter.js
+|   |   |-- formulario.js
+|   |   |-- navlinks.js
+|   |
+|   |-- organisms/       # Diretório para componentes orgânicos
+|   |   |-- footer.js
+|   |   |-- header.js
+|   |   |-- main.js
+|   |   |-- navbar.js
+|   |   |-- sidebar.js
+|   |   |-- ...
+|   |
+|   |-- templates/       # Diretório para templates
+|       |-- MainLayout.js
+|       |-- TemplateSobre.js
+|
+|-- pages/               # Novo diretório para páginas da aplicação
+|   |-- contato.js       # Página contato fictícia
+|   |-- home.js          # Página "home" fictícia
+|   |-- sobre.js         # Página "Sobre" fictícia
+|
+|-- utils/
+|   |-- api.js           # não criado
+|
+|-- styles/
+    |-- styles.css
+    |-- variables.css
+```
