@@ -10,13 +10,19 @@ function renderApp() {
 
     switch (hash) {
       case '#home':
+        console.time('performace-home')
         app.appendChild(renderHome());
+        console.timeEnd('performace-home')
         break;
       case '#sobre':
+        console.time('performace-sobre')
         app.appendChild(renderPaginaSobre());
+        console.timeEnd('performace-sobre')
         break;
       case '#contato':
+        console.time('performace-contato')
         app.appendChild(renderContato());
+        console.timeEnd('performace-contato')
         break;
       
       default:
