@@ -11,5 +11,24 @@
 <div id="app"></div>
 
 <script type="module" src="js/App.js"></script>
+<script>
+  var inicio = window.performance.now();
+
+  window.addEventListener('load', function() {
+      var tempoload = window.performance.now() - inicio;
+      console.log('Tempo de carregamento completo da página: ' + tempoload + ' milissegundos');
+  });
+
+  document.addEventListener('DOMContentLoaded', function() {
+      var domload = window.performance.now() - inicio;
+      console.log('Tempo de carregamento do DOM: ' + domload + ' milissegundos');
+  });
+  document.onreadystatechange = function () {
+    if (document.readyState === "complete") {
+      var documento = window.performance.now() - inicio;
+      console.log('Tempo de carregamento do DOM: ' + documento + ' milissegundos');
+    }
+};
+</script>
 </body>
 </html>
