@@ -1,34 +1,21 @@
 import renderHome from './paginas/home.js';
 import renderPaginaSobre from './paginas/sobre.js'; 
 import renderContato from './paginas/contato.js'; 
+import render404 from './paginas/erro404.js'; 
 function renderApp() {
   const app = document.getElementById('app');
-  
+  const rotas = {
+    '#home': renderHome,
+    '#sobre': renderPaginaSobre,
+    '#contato': renderContato,
+    '#erro': render404
+  }
   function renderPage() {
     const hash = window.location.hash; 
     app.innerHTML = '';
+    const pagina = rotas[hash] || rotas['#erro']
+    app.appendChild(pagina());
 
-    switch (hash) {
-      case '#home':
-        console.time('performace-home')
-        app.appendChild(renderHome());
-        console.timeEnd('performace-home')
-        break;
-      case '#sobre':
-        console.time('performace-sobre')
-        app.appendChild(renderPaginaSobre());
-        console.timeEnd('performace-sobre')
-        break;
-      case '#contato':
-        console.time('performace-contato')
-        app.appendChild(renderContato());
-        console.timeEnd('performace-contato')
-        break;
-      
-      default:
-        app.appendChild(renderHome());
-        break;
-    }
   }
 
   window.addEventListener('hashchange', renderPage);
