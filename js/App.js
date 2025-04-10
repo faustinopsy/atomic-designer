@@ -10,11 +10,11 @@ function renderApp() {
     '#contato': renderContato,
     '#erro': render404
   }
-  function renderPage() {
+  async function renderPage() {
     const hash = window.location.hash; 
     app.innerHTML = '';
     const pagina = rotas[hash] || rotas['#erro']
-    app.appendChild(pagina());
+    app.appendChild( await pagina());
 
   }
 

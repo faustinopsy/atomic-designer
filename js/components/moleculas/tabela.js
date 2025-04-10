@@ -18,6 +18,7 @@ export default function renderTabelaFromObject(data) {
 
   const tbody = renderTableBody();
   data.forEach(item => {
+
     const row = renderTableRow();
     Object.values(item).forEach(value => {
       const td = renderTableCell(value);
