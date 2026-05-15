@@ -1,23 +1,19 @@
 import renderSobre from '../components/templates/templateSobre.js';
-import renderLabel from '../components/atomos/label.js';
+import renderMainLayout from '../components/templates/mainLayout.js';
+import renderP from '../components/atomos/p.js';
 import { getUser } from '../utils/api.js';
 
 async function renderPaginaSobre() {
-  const dados = await getUser()
-  if(dados){
-    dados.forEach(element => {
-      delete element.address
-      delete element.company
-    });
-    const sobre = document.createElement('div');
-    sobre.appendChild(
-      renderLabel(`Aqui temos a página SOBRE que poderia renderizar varias coisas`)
-    )
-    return renderSobre(dados,'Sobre');
+  const dados = await getUser();
+  const dadosFiltrados = dados.map(({ address, company, ...resto }) => resto);
+
+  if (dadosFiltrados.length === 0) {
+    const aviso = document.createElement('div');
+    aviso.appendChild(renderP('Não foi possível carregar os dados.'));
+    return renderMainLayout(aviso, 'Sobre');
   }
 
- 
-  
+  return renderSobre(dadosFiltrados, 'Sobre');
 }
 
 export default renderPaginaSobre;

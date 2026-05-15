@@ -1,35 +1,45 @@
-const cache = {}
+import { API_URLS } from '../config.js';
+
+const cache = new Map();
+const CACHE_LIMIT = 100;
+
+function setCache(chave, valor) {
+  if (cache.size >= CACHE_LIMIT) {
+    cache.delete(cache.keys().next().value);
+  }
+  cache.set(chave, valor);
+}
+
 export const getCEP = async (cep) => {
-    console.log(cache[cep])
-    console.time("cache");
-    if (cache[cep]) {
-        console.log(`cache: Dados carregados do cache: ${JSON.stringify(cache[cep])}`);
-        console.timeLog("cache");
-        return cache[cep];
-    }
-    console.time("api");
+  if (cache.has(cep)) {
+    return cache.get(cep);
+  }
   try {
-    const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
-    const data = await response.json()
-    console.log(`api: Dados carregados da API: ${JSON.stringify(data)}`);
-    console.timeLog("api");
-    cache[cep] = data;
-    return data
+    const response = await fetch(`${API_URLS.CEP}/${cep}/json/`);
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+    }
+    const data = await response.json();
+    setCache(cep, data);
+    return data;
   } catch (error) {
-    console.error('Erro ao buscar cep:', error);
-    return [];
+    console.error('Erro ao buscar CEP:', error);
+    return null;
   }
 };
 
 export const getUser = async () => {
-    try {
-      const response = await fetch(`https://jsonplaceholder.typicode.com/users`);
-      const data = await response.json()
-      return data
-    } catch (error) {
-      console.error('Erro ao buscar users:', error);
-      return [];
+  try {
+    const response = await fetch(API_URLS.USERS);
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}: ${response.statusText}`);
     }
-  };
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Erro ao buscar users:', error);
+    return [];
+  }
+};
 
-export default {getCEP, getUser};
+export default { getCEP, getUser };

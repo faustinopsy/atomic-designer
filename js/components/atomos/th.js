@@ -1,5 +1,6 @@
-export default function renderTableHeaderCell(text) {
-    const th = document.createElement('th');
-    th.textContent = text;
-    return th;
-  }
+export default function renderTableHeaderCell(text, scope = 'col') {
+  const th = document.createElement('th');
+  th.scope = scope;
+  th.textContent = text;
+  return th;
+}

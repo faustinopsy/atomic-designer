@@ -1,5 +1,6 @@
-export default function renderBotao(texto) {
-    const button = document.createElement('button');
-    button.textContent = texto;
-    return button;
-  }
+export default function renderBotao(texto, tipo = 'button') {
+  const button = document.createElement('button');
+  button.type = tipo;
+  button.textContent = texto;
+  return button;
+}

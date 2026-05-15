@@ -3,17 +3,16 @@ import renderSidebar from '../organismos/sidebar.js';
 import renderNav from '../organismos/navbar.js';
 import renderMain from '../organismos/main.js';
 import renderFooter from '../organismos/footer.js';
+import { NAV_LINKS, FOOTER_DADOS } from '../../config.js';
 
-function renderMainLayout(pagina,titulo) {
+export default function renderMainLayout(pagina, titulo) {
   const mainLayout = document.createElement('div');
-  const header = renderHeader(titulo);
-  const sidebar = renderSidebar();
 
-  mainLayout.appendChild(header);
-  mainLayout.appendChild(renderNav());
+  mainLayout.appendChild(renderHeader(titulo));
+  mainLayout.appendChild(renderNav(NAV_LINKS));
   mainLayout.appendChild(renderMain(pagina));
-  mainLayout.appendChild(renderFooter());
+  mainLayout.appendChild(renderSidebar());
+  mainLayout.appendChild(renderFooter(FOOTER_DADOS));
+
   return mainLayout;
 }
-
-export default renderMainLayout;
