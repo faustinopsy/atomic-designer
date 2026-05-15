@@ -116,3 +116,12 @@
   tr:nth-child(even) {
     background-color: #dddddd;
   }
+
+  a[aria-current="page"] {
+    font-weight: bold;
+    text-decoration: underline;
+  }
+
+  #debug-painel {
+    font-size: 11px;
+  }
